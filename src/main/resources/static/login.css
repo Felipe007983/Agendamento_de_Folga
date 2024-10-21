@@ -1,0 +1,102 @@
+body {
+    background-color: #f8f9fa; /* Cor de fundo suave */
+    display: flex; /* Usar flexbox para centralizar */
+    justify-content: center; /* Alinha horizontalmente ao centro */
+    align-items: center; /* Alinha verticalmente ao centro */
+    height: 100vh; /* Altura total da tela */
+    margin: 0; /* Remove margens padrão */
+    font-family: Arial, sans-serif; /* Fonte padrão */
+}
+
+.container {
+    max-width: 400px; /* Largura máxima do formulário */
+    padding: 20px; /* Padding interno */
+    border: 1px solid #ced4da; /* Borda suave */
+    border-radius: 8px; /* Cantos arredondados */
+    background-color: white; /* Fundo branco para o formulário */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra do formulário */
+}
+
+h1 {
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 20px; /* Margem inferior */
+    color: #343a40; /* Cor do texto */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Margem inferior dos grupos de formulário */
+}
+
+input {
+    width: 100%; /* Campo de entrada ocupa toda a largura */
+    padding: 10px; /* Padding interno */
+    border: 1px solid #ced4da; /* Borda suave */
+    border-radius: 4px; /* Cantos arredondados */
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+button {
+    width: 100%; /* Botão ocupa toda a largura */
+    padding: 10px; /* Padding interno */
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 4px; /* Cantos arredondados */
+    cursor: pointer; /* Cursor em forma de ponteiro */
+}
+
+button:hover {
+    background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+.text-center {
+    text-align: center; /* Centraliza o texto do link */
+    margin-top: 10px; /* Margem superior */
+}
+
+.text-center a {
+    color: #007bff; /* Cor do texto do link */
+    text-decoration: none; /* Remove o sublinhado do link */
+}
+
+.text-center a:hover {
+    text-decoration: underline; /* Sublinha o link ao passar o mouse */
+}
+
+/* Estilos para os Modais */
+.modal {
+    display: none; /* Inicialmente escondido */
+    position: fixed; /* Fixa o modal na tela */
+    z-index: 1000; /* Fica acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Permite rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escurecido */
+}
+
+.modal-content {
+    background-color: white; /* Fundo branco para o modal */
+    margin: 15% auto; /* Margem para centralizar */
+    padding: 20px; /* Padding interno */
+    border: 1px solid #888; /* Borda do modal */
+    border-radius: 8px; /* Cantos arredondados */
+    width: 80%; /* Largura do modal */
+    max-width: 400px; /* Largura máxima do modal */
+}
+
+.modal-header {
+    display: flex; /* Flexbox para layout */
+    justify-content: space-between; /* Espaço entre elementos */
+    align-items: center; /* Alinha verticalmente ao centro */
+}
+
+.modal-header h5 {
+    margin: 0; /* Remove margens */
+}
+
+.close {
+    cursor: pointer; /* Cursor em forma de ponteiro */
+    font-size: 1.5em; /* Tamanho do texto */
+}
