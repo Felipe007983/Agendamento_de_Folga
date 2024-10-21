@@ -1,0 +1,180 @@
+/* Estilo para o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+/* Container principal */
+#folgas-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+#folgas-container h3 {
+    color: #666;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#folgas-container div {
+    margin-bottom: 15px;
+}
+
+/* Lista de folgas */
+#folgas-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#folgas-container li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+    border: 1px solid #ddd;
+}
+
+#folgas-container li:hover {
+    background-color: #e9e9e9;
+}
+
+/* Botões de editar e excluir */
+#folgas-container button {
+    background: #007BFF;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+    font-size: 0.9em;
+}
+
+#folgas-container button:hover {
+    background-color: #0056b3;
+}
+
+#folgas-container button:nth-of-type(2) {
+    background: #DC3545;
+}
+
+#folgas-container button:nth-of-type(2):hover {
+    background-color: #c82333;
+}
+
+/* Estilo para o botão do Portal BI */
+#portal-bi-button {
+    background: #007BFF; /* Cor do botão */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1em;
+    margin-bottom: 20px; /* Margem inferior para separar do conteúdo */
+    width: auto; /* Largura automática */
+    display: inline-block; /* Permite margens e alinhamento */
+}
+
+#portal-bi-button:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
+}
+
+/* Estilo para o modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
+}
+
+/* Estilo do conteúdo do modal */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto; /* Margem automática para centralizar o modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px; /* Largura fixa do modal */
+    max-width: 90%; /* Largura máxima para telas pequenas */
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+}
+
+/* Estilo do botão de fechar */
+.close-button {
+    color: #aaa;
+    float: right; /* Alinhamento à direita */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo para os campos de input */
+.modal-content input[type="date"] {
+    width: calc(100% - 20px); /* 100% menos o padding */
+    padding: 10px;
+    margin: 10px 0; /* Margem vertical */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+/* Estilo dos botões do modal */
+.modal-content button {
+    background: #28A745; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 0; /* Margem vertical */
+    transition: background-color 0.3s;
+    font-size: 0.9em;
+    width: 100%; /* Botão ocupa 100% da largura */
+}
+
+.modal-content button:hover {
+    background-color: #218838; /* Verde escuro ao passar o mouse */
+}
+
+.modal-content button:nth-of-type(2) {
+    background: #6c757d; /* Cinza */
+}
+
+.modal-content button:nth-of-type(2):hover {
+    background-color: #5a6268; /* Cinza escuro ao passar o mouse */
+}

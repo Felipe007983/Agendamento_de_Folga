@@ -39,7 +39,7 @@ input[type="password"] {
 button {
     width: 100%; /* Largura total */
     padding: 10px; /* Espaçamento interno */
-    background-color: #007bff; /* Cor de fundo do botão */
+    background-color: #f9f9f9; /* Cor de fundo do botão */
     color: white; /* Cor do texto do botão */
     border: none; /* Remove a borda padrão */
     border-radius: 4px; /* Bordas arredondadas */
@@ -54,7 +54,7 @@ a {
     display: block; /* Exibe o link como bloco */
     text-align: center; /* Centraliza o link */
     margin-top: 15px; /* Margem superior */
-    color: #007bff; /* Cor do link */
+    color: #191970; /* Cor do link */
     text-decoration: none; /* Remove o sublinhado */
 }
 

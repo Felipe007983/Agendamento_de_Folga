@@ -38,7 +38,7 @@ input {
 button {
     width: 100%; /* Botão ocupa toda a largura */
     padding: 10px; /* Padding interno */
-    background-color: #007bff; /* Cor de fundo do botão */
+    background-color: #191970; /* Cor de fundo do botão */
     color: white; /* Cor do texto do botão */
     border: none; /* Remove a borda padrão */
     border-radius: 4px; /* Cantos arredondados */
@@ -55,7 +55,7 @@ button:hover {
 }
 
 .text-center a {
-    color: #007bff; /* Cor do texto do link */
+    color: #191970; /* Cor do texto do link */
     text-decoration: none; /* Remove o sublinhado do link */
 }
 

@@ -1,0 +1,53 @@
+/* Resetando margens e preenchimentos padrão */
+body, h1 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo do corpo */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9; /* Cor de fundo suave */
+    color: #333; /* Cor do texto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Altura da tela */
+}
+
+/* Estilo do título */
+h1 {
+    font-size: 2.5em; /* Tamanho do título */
+    color: #4a90e2; /* Cor do título */
+    margin-bottom: 40px; /* Espaçamento inferior */
+}
+
+/* Container para os botões */
+.button-container {
+    display: flex; /* Usar flexbox para alinhar os botões */
+    gap: 20px; /* Espaço entre os botões */
+}
+
+/* Estilo dos botões */
+.button {
+    background-color: #4a90e2; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    padding: 15px 25px; /* Preenchimento do botão */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-decoration: none; /* Remove sublinhado */
+    font-size: 1.2em; /* Tamanho da fonte */
+    transition: background-color 0.3s, transform 0.3s; /* Efeito de transição */
+}
+
+/* Efeito de hover nos botões */
+.button:hover {
+    background-color: #357ab7; /* Cor de fundo ao passar o mouse */
+    transform: translateY(-3px); /* Levanta o botão ao passar o mouse */
+}
+
+/* Adicionando sombra ao botão */
+.button:active {
+    transform: translateY(0); /* Botão volta à posição original quando clicado */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Sombra do botão */
+}

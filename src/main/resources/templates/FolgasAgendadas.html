@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Folgas Agendadas</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/FolgasAgendadas.css}" />
+
+    <script>
+        async function loadFolgas() {
+            const response = await fetch('/funcionarios/folgas-agendadas/data');
+            const folgas = await response.json();
+            const folgasContainer = document.getElementById('folgas-container');
+            folgasContainer.innerHTML = '';
+
+            for (const centroCusto in folgas) {
+                const centroDiv = document.createElement('div');
+                centroDiv.innerHTML = `<h3>${centroCusto}</h3>`;
+                const dataMap = folgas[centroCusto];
+
+                for (const data in dataMap) {
+                    const dataDiv = document.createElement('div');
+                    dataDiv.innerHTML = `<strong>${data}</strong><ul>`;
+
+                    dataMap[data].forEach(folga => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `Operador: ${folga.operador.nome} (ID: ${folga.operador.id})`;
+
+                        // Botões de Editar e Excluir
+                        const editButton = document.createElement('button');
+                        editButton.textContent = 'Editar';
+                        editButton.onclick = () => openEditForm(folga);
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Excluir';
+                        deleteButton.onclick = () => deleteFolga(folga.id);
+
+                        listItem.appendChild(editButton);
+                        listItem.appendChild(deleteButton);
+                        dataDiv.querySelector('ul').appendChild(listItem);
+                    });
+
+                    centroDiv.appendChild(dataDiv);
+                }
+
+                folgasContainer.appendChild(centroDiv);
+            }
+        }
+
+        async function deleteFolga(id) {
+            if (confirm('Tem certeza que deseja excluir esta folga?')) {
+                const response = await fetch(`/funcionarios/folgas-agendadas/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    alert('Folga excluída com sucesso!');
+                    loadFolgas(); // Recarrega as folgas
+                } else {
+                    alert('Erro ao excluir a folga.');
+                }
+            }
+        }
+
+        function openEditForm(folga) {
+            const editForm = document.getElementById('edit-form');
+            editForm.style.display = 'block';
+            document.getElementById('edit-id').value = folga.id;
+            document.getElementById('edit-date').value = folga.dataFolga;
+
+            // Definir o valor mínimo para a data de hoje
+            const today = new Date();
+            const minDate = today.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+            document.getElementById('edit-date').setAttribute('min', minDate);
+        }
+
+        async function updateFolga() {
+            const id = document.getElementById('edit-id').value;
+            const newDate = document.getElementById('edit-date').value;
+
+            if (!id) {
+                alert('ID da folga não encontrado.');
+                return;
+            }
+
+            const folgaData = {
+                id: id,
+                dataFolga: newDate
+            };
+
+            const response = await fetch(`/funcionarios/folgas-agendadas/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(folgaData)
+            });
+
+            if (response.ok) {
+                alert('Folga atualizada com sucesso!');
+                document.getElementById('edit-form').style.display = 'none';
+                loadFolgas();
+            } else {
+                const errorMessage = await response.text();
+                alert(`Erro ao atualizar a folga: ${errorMessage}`);
+            }
+        }
+
+        window.onload = loadFolgas;
+    </script>
+</head>
+<body>
+
+<h1>Folgas Agendadas</h1>
+
+<!-- Botão para redirecionar ao Portal BI -->
+<button id="portal-bi-button" onclick="window.location.href='http://localhost:8080/funcionarios/portal-bi'">Inicio</button>
+
+<div id="folgas-container"></div>
+
+<!-- Modal de Edição -->
+<div id="edit-form" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="document.getElementById('edit-form').style.display='none'">&times;</span>
+        <h3>Editar Folga</h3>
+        <input type="hidden" id="edit-id" />
+        <label for="edit-date">Nova Data:</label>
+        <input type="date" id="edit-date" />
+        <button onclick="updateFolga()">Salvar</button>
+        <button onclick="document.getElementById('edit-form').style.display='none'">Cancelar</button>
+    </div>
+</div>
+
+</body>
+</html>

@@ -18,7 +18,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().and() // Habilita a proteção CSRF
+                .csrf(csrf -> csrf
+                        .disable() // Desabilitar CSRF se você não precisar dele para chamadas de API REST; caso contrário, habilite conforme necessário
+                )
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
                                 "/auth/login",
@@ -27,23 +29,25 @@ public class SecurityConfig {
                                 "/css/**",
                                 "/js/**",
                                 "/images/**"
-                        ).permitAll() // Permite acesso sem autenticação
+                        ).permitAll() // Permite acesso sem autenticação a páginas específicas
                         .requestMatchers("/funcionarios/agendar-folga").authenticated() // Requer autenticação para agendar folga
+                        .requestMatchers("/funcionarios/folgas-agendadas").authenticated() // Requer autenticação para visualizar folgas agendadas
+                        .requestMatchers("/funcionarios/portal-bi").authenticated() // Requer autenticação para acessar o Portal BI
                         .anyRequest().authenticated() // Todas as outras requisições requerem autenticação
                 )
                 .formLogin(form -> form
-                        .loginPage("/auth/login")
-                        .loginProcessingUrl("/auth/login")
-                        .usernameParameter("email")
-                        .passwordParameter("password")
-                        .defaultSuccessUrl("/funcionarios", true)
-                        .failureUrl("/auth/login?error=true")
-                        .permitAll()
+                        .loginPage("/auth/login") // URL da página de login
+                        .loginProcessingUrl("/auth/login") // URL para processamento do login
+                        .usernameParameter("email") // Parâmetro do email para login
+                        .passwordParameter("password") // Parâmetro da senha para login
+                        .defaultSuccessUrl("/funcionarios/portal-bi", true) // URL padrão após sucesso no login
+                        .failureUrl("/auth/login?error=true") // URL em caso de falha no login
+                        .permitAll() // Permite acesso à página de login
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/auth/logout")
-                        .logoutSuccessUrl("/auth/login?logout=true")
-                        .permitAll()
+                        .logoutUrl("/auth/logout") // URL para logout
+                        .logoutSuccessUrl("/auth/login?logout=true") // URL após logout bem-sucedido
+                        .permitAll() // Permite acesso à URL de logout
                 );
 
         return http.build();
@@ -51,16 +55,15 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authManager(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder =
-                http.getSharedObject(AuthenticationManagerBuilder.class);
+        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder
                 .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+                .passwordEncoder(passwordEncoder()); // Configura o codificador de senhas
         return authenticationManagerBuilder.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); // Usar BCrypt para codificação de senhas
     }
 }
